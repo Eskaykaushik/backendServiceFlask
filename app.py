@@ -11,8 +11,15 @@ model_path = os.path.join(BASE_DIR, "models", "spam_model.pkl")
 with open(model_path, "rb") as f:
     model = pickle.load(f)
 
+
+
+
 app = Flask(__name__)
 CORS(app)  # Enable CORS for frontend
+
+@app.route('/')  # Default route
+def home():
+    return jsonify({"message": "Backend is running!"})
 
 @app.route("/predict", methods=["POST"])
 def predict():
